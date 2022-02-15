@@ -7,14 +7,14 @@ import postRoutes from "./routes/posts.js";
 
 const app = express();
 
-app.use("/posts", postRoutes);
 
 app.use(bodyParser.json({ limit: "30mb", extended: true })); //Image size upload limit - 30 MB
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true })); //Image size upload limit - 30 MB
 app.use(cors);
 
+app.use("/posts", postRoutes);//Define this after app.use(cors); to not get network error
 const CONNECTION_URL =
-  "mongodb+srv://anmolDB:p@cluster0.qsmtv.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+  "mongodb+srv://anmolDB:anmolDB1710@cluster0.qsmtv.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 
 const PORT = process.env.PORT || 5000;
 
