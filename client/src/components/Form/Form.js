@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import FileBase from 'react-file-base64'
 import { TextField, Button, Typography, Paper } from "@material-ui/core";
+import { useDispatch } from "react-redux";
+
 import useStyles from "./styles";
-import { pink } from "@material-ui/core/colors";
+import { createPost } from "../../actions/posts";
+
 const Form = () => {
   const [postData, setPostData] = useState({
     creator: "",
@@ -12,7 +15,12 @@ const Form = () => {
     selectedFile: "",
   });
   const classes = useStyles();
-  const handleSubmit = () => {};
+  const dispatch = useDispatch();
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // console.log("In the form");
+    dispatch(createPost(postData));//we are sending data inputed in form to api
+  };
   const clear = () => {};
   return (
     <Paper className={classes.paper}>

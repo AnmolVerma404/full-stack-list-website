@@ -14,7 +14,7 @@ app.use(cors);
 
 app.use("/posts", postRoutes);//Define this after app.use(cors); to not get network error
 const CONNECTION_URL =
-  "mongodb+srv://anmolDB:anmolDB1710@cluster0.qsmtv.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+  "mongodb+srv://anmolDB:anmolDB1710@cluster0.qsmtv.mongodb.net/memo?retryWrites=true&w=majority";
 
 const PORT = process.env.PORT || 5000;
 
