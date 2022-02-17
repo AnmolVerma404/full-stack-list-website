@@ -9,7 +9,7 @@ const app = express();
 
 app.use(bodyParser.json({ limit: "30mb", extended: true })); //Image size upload limit - 30 MB
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true })); //Image size upload limit - 30 MB
-app.use(cors());
+app.use(cors());//But at c2ba31c was here, forgot to add () after cores and some typo mistake in controllers/posts.js
 
 app.use("/posts", postRoutes); //Define this after app.use(cors); to not get network error
 const CONNECTION_URL =
