@@ -10,7 +10,6 @@ export const getPosts = () => async (dispatch) => {
 };
 //async as creating post is an asynchronous activity
 export const createPost = (post) => async (dispatch) => {
-  console.log(post);
   try {
     const { data } = await api.createPost(post);
 
