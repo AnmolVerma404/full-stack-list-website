@@ -4,9 +4,9 @@ import { TextField, Button, Typography, Paper } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 
 import useStyles from './styles';
-import { createPost } from '../../actions/posts';
+import { createPost, updatePost } from '../../actions/posts';
 
-const Form = () => {
+const Form = ({currentID,setCurrentID}) => {
   const [postData, setPostData] = useState({
     creator: "",
     title: "",
@@ -14,18 +14,27 @@ const Form = () => {
     tags: "",
     selectedFile: "",
   });
+  const post = useSelector((state) => currentID ? state.posts.find((p)=>p._id===currentID):null);
   const classes = useStyles();
   const dispatch = useDispatch();
+
+  useEffect(()=>{
+    if(post) setPostData(post);
+  },[post])
   const handleSubmit = (e) => {
     e.preventDefault();
     // console.log("In the form");
-    dispatch(createPost(postData));//we are sending data inputed in form to api
+    if(currentID){//This will check if currentID is null or not i.e. if it's not that means user have clicked to edit and currentID have that ID
+      dispatch(updatePost(currentID,postData));
+    }else{
+      dispatch(createPost(postData));//we are sending data inputed in form to api
+    }
   };
   const clear = () => {};
   return (
     <Paper className={classes.paper}>
       <form autoComplete="off" noValidate className={`${classes.root} ${classes.form}`} onSubmit={handleSubmit}>
-        <Typography variant="h6">Creating a Memory</Typography>
+        <Typography variant="h6">{currentID ? 'Editing' : 'Creating'} a Memory</Typography>
         <TextField name="creator" variant="outlined" label="Creator" fullWidth value={postData.creator} onChange={(e) =>setPostData({ ...postData, creator: e.target.value })}/>
         <TextField name="title" variant="outlined" label="Title" fullWidth value={postData.title} onChange={(e) =>setPostData({ ...postData, title: e.target.value })}/>
         <TextField name="message" variant="outlined" label="Message" fullWidth value={postData.message} onChange={(e) =>setPostData({ ...postData, message: e.target.value })}/>
