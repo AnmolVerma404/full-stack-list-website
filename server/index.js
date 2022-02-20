@@ -14,6 +14,8 @@ app.use(cors());//But at c2ba31c was here, forgot to add () after cores and some
 
 app.use("/posts", postRoutes); //Define this after app.use(cors); to not get network error
 
+app.get('/',(req,res)) // In progress
+
 const PORT = process.env.PORT || 5000;
 
 mongoose
