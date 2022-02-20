@@ -89,7 +89,7 @@ const Form = ({ currentID, setCurrentID }) => {
           label="Tags"
           fullWidth
           value={postData.tags}
-          onChange={(e) => setPostData({ ...postData, tags: e.target.value })}
+          onChange={(e) => setPostData({ ...postData, tags: e.target.value.split(',') })}
         />
         {/* Below we are using react-file-base64 this convert image to text format */}
         <div className={classes.fileInput}>
