@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const url = "http://localhost:5000/posts"; //This will collect all the data from server to be used in the client
+const url = "https://anmol-project.herokuapp.com/posts"; //This will collect all the data from server to be used in the client
 
 export const fetchPosts = () => axios.get(url);
 //Below function will get full post inputed by user from form
